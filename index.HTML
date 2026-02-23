@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>รายชื่อผู้ติดต่อภายใน - 9 Singha Broker</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --primary-color: #0056b3; /* สีธีมหลัก */
+        --bg-color: #f4f7f6;
+        --card-bg: #ffffff;
+        --text-color: #333;
+        --border-color: #e0e0e0;
+    }
+
+    body {
+        font-family: 'Sarabun', sans-serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        background-color: var(--bg-color);
+        margin: 0;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 1000px; /* ขยายความกว้างเล็กน้อยเพื่อให้พอดีกับอีเมล */
+        margin: 0 auto;
+        background-color: var(--card-bg);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 28px;
+        margin-bottom: 20px;
+        color: var(--primary-color);
+    }
+
+    /* Search Box Style */
+    .search-container {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    #searchInput {
+        width: 100%;
+        max-width: 400px;
+        padding: 12px 20px;
+        border: 2px solid #ddd;
+        border-radius: 25px;
+        font-family: 'Sarabun', sans-serif;
+        font-size: 16px;
+        outline: none;
+        transition: border-color 0.3s;
+    }
+
+    #searchInput:focus {
+        border-color: var(--primary-color);
+    }
+
+    /* Table Style */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    th, td {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid var(--border-color);
+        vertical-align: middle;
+    }
+
+    th {
+        background-color: var(--primary-color);
+        color: white;
+        font-weight: 600;
+        text-align: center;
+        white-space: nowrap; /* ห้ามตัดคำในหัวตาราง */
+    }
+
+    /* จัดการช่องเบอร์โทรให้ชิดขวาหรือกลางสวยๆ */
+    td:last-child {
+        font-weight: 700;
+        text-align: center;
+        color: var(--primary-color);
+        font-size: 1.1em;
+        width: 100px; /* กำหนดความกว้างขั้นต่ำให้เบอร์โทร */
+    }
+
+    /* จัดการช่องอีเมล */
+    td:nth-child(3) {
+        color: #555;
+        font-size: 0.95em;
+    }
+
+    tr:hover {
+        background-color: #f9f9f9;
+    }
+
+    /* Style for Resigned Employees */
+    tr.resigned {
+        color: #aaa;
+        background-color: #fcfcfc;
+    }
+    
+    tr.resigned td:last-child {
+        color: #aaa;
+        text-decoration: line-through;
+    }
+
+    /* Mobile Responsive Logic */
+    @media screen and (max-width: 768px) {
+        table, thead, tbody, th, td, tr { 
+            display: block; 
+        }
+        
+        thead { 
+            display: none; 
+        }
+        
+        tr { 
+            margin-bottom: 15px; 
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            background: #fff;
+        }
+        
+        td { 
+            padding-left: 40%; 
+            position: relative;
+            border-bottom: 1px solid #eee;
+            text-align: right; /* จัดข้อความชิดขวาในมือถือ */
+            padding-right: 15px;
+        }
+
+        td:last-child {
+            border-bottom: none;
+            text-align: right; /* เบอร์โทรชิดขวา */
+        }
+        
+        td:before { 
+            content: attr(data-label); 
+            position: absolute;
+            left: 15px;
+            width: 35%;
+            text-align: left;
+            font-weight: bold;
+            color: #666;
+            white-space: nowrap;
+        }
+        
+        /* ปรับให้อีเมลยาวๆ ตัดคำได้ในมือถือ */
+        td:nth-child(3) {
+            word-break: break-all;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>รายชื่อผู้ติดต่อภายใน</h1>
+    
+    <div class="search-container">
+        <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="ค้นหาชื่อ, แผนก, อีเมล หรือ เบอร์โทร...">
+    </div>
+
+    <table id="contactTable">
+        <thead>
+            <tr>
+                <th>แผนก / ตำแหน่ง</th>
+                <th>ชื่อ - นามสกุล (ชื่อเล่น)</th>
+                <th>อีเมลติดต่อ</th> <th>เบอร์ต่อ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td data-label="แผนก / ตำแหน่ง">ที่ปรึกษาองค์กร</td>
+                <td data-label="ชื่อ - นามสกุล">คุณชญณา ศิริภิรมย์ (คุณจ๊ะ)</td>
+                <td data-label="อีเมลติดต่อ">..........@9singhabroker.com</td>
+                <td data-label="เบอร์ต่อ">4070</td>
+            </tr>
+            <tr>
+                <td data-label="แผนก / ตำแหน่ง">ผจก.บัญชีและการเงิน</td>
+                <td data-label="ชื่อ - นามสกุล">คุณสุดารัตน์ ชุมพล (คุณอี๊ด)</td>
+                <td data-label="อีเมลติดต่อ">accountant@9singhabroker.com</td>
+                <td data-label="เบอร์ต่อ">4052</td>
+            </tr>
+            <tr>
+                <td data-label="แผนก / ตำแหน่ง">บัญชีและการเงิน</td>
+                <td data-label="ชื่อ - นามสกุล">คุณมาริสา ตราชูธรรม (คุณสา)</td>
+                <td data-label="อีเมลติดต่อ">accountant02@9singhabroker.com</td>
+                <td data-label="เบอร์ต่อ">4059</td>
+            </tr>
+            <tr>
+                <td data-label="แผนก / ตำแหน่ง">การเงิน</td>
+                <td data-label="ชื่อ - นามสกุล">คุณอินทิรา มูฮำหมัด (คุณม่อน)</td>
+                <td data-label="อีเมลติดต่อ">finance@9singhabroker.com</td>
+                <td data-label="เบอร์ต่อ">4057</td>
+            </tr>
+            <tr>
+                <td data-label="แผนก / ตำแหน่ง">บัญชีและการเงิน</td>
+                <td data-label="ชื่อ - นามสกุล">คุณหทัยชนก จำรัส (คุณปลาย)</td>
+                <td data-label="อีเมลติดต่อ">accountant05@9singhabroker.com</td>
+                <td data-label="เบอร์ต่อ">4053</td>
+            </tr>
+            <tr>
+                <td data-label="แผนก / ตำแหน่ง">บัญชี</td>
+                <td data-label="ชื่อ - นามสกุล">ว่าง (ออก)</td>
+                <td data-label="อีเมลติดต่อ">accountant03@9singhabroker.com</td>
+                <td data-label="เบอร์ต่อ">4060</td>
+            </tr>
+            <tr>
+                <td data-label="แผนก / ตำแหน่ง">Asst. Sec. MD</td>
+                <td data-label="ชื่อ - นามสกุล">คุณชลดา พรมนิล (คุณครีม)</td>
+                <td data-label="อีเมลติดต่อ">admin01@9singhabroker.com</td>
+                <td data-label="เบอร์ต่อ">2049</td>
+            </tr>
+            <tr>
+                <td data-label="แผนก / ตำแหน่ง">Compensation & Benefit</td>
+                <td data-label="ชื่อ - นามสกุล">คุณพรปวีณ์ สอนสมนึก (คุณเจน)</td>
+                <td data-label="อีเมลติดต่อ">admin03@9singhabroker.com</td>
+                <td data-label="เบอร์ต่อ">4051</td>
+            </tr>
+            <tr>
+                <td data-label="แผนก / ตำแหน่ง">ผบ.ทีมทรัพยากรบุคคลฯ</td>
+                <td data-label="ชื่อ - นามสกุล">คุณพีร์กวินท์ วิไลประจวบแสง (คุณเล็ก)</td>
+                <td data-label="อีเมลติดต่อ">humanresource01@9singhabroker.com</td>
+                <td data-label="เบอร์ต่อ">4062</td>
+            </tr>
+            <tr>
+                <td data-label="แผนก / ตำแหน่ง">สรรหาบุคลากร</td>
+                <td data-label="ชื่อ - นามสกุล">คุณธีรสิทธิ์ ศิรดาเกียรติอุดม(คุณสกาย)</td>
+                <td data-label="อีเมลติดต่อ">humanresource02@9singhabroker.com</td>
+                <td data-label="เบอร์ต่อ">4050</td>
+            </tr>
+            <tr>
+                <td data-label="แผนก / ตำแหน่ง">สรรหาบุคลากร</td>
+                <td data-label="ชื่อ - นามสกุล">คุณธนโชติ เคนศิลา (คุณปอนด์)</td>
+                <td data-label="อีเมลติดต่อ">humanresource04@9singhabroker.com</td>
+                <td data-label="เบอร์ต่อ">4065</td>
+            </tr>
+            <tr>
+                <td data-label="แผนก / ตำแหน่ง">สนับสนุนทรัพยากรบุคคล</td>
+                <td data-label="ชื่อ - นามสกุล">คุณพงศธร นาโควงค์ (คุณตี๋เล็ก)</td>
+                <td data-label="อีเมลติดต่อ">admin.hr@9singhabroker.com</td>
+                <td data-label="เบอร์ต่อ">4066</td>
+            </tr>
+            <tr>
+                <td data-label="แผนก / ตำแหน่ง">เจ้าหน้าที่บริหารงานบุคคล</td>
+                <td data-label="ชื่อ - นามสกุล">คุณกิตติศักดิ์ ศรีตา (คุณบีม)</td>
+                <td data-label="อีเมลติดต่อ">humanresource05@9singhabroker.com</td>
+                <td data-label="เบอร์ต่อ">4058</td>
+            </tr>
+            <tr>
+                <td data-label="แผนก / ตำแหน่ง">บริหารสำนักงานประชาสัมพันธ์,(จัดซื้อ)</td>
+                <td data-label="ชื่อ - นามสกุล">คุณนิรภา เอี่ยมมรางกูร (คุณจุ๊บ)</td>
+                <td data-label="อีเมลติดต่อ">purchasing@9singhabroker.com</td>
+                <td data-label="เบอร์ต่อ">4054</td>
+            </tr>
+            <tr>
+                <td data-label="แผนก / ตำแหน่ง">Sec. DMD</td>
+                <td data-label="ชื่อ - นามสกุล">ว่าง (ว่าง)</td>
+                <td data-label="อีเมลติดต่อ">-</td>
+                <td data-label="เบอร์ต่อ">2051</td>
+            </tr>
+            <tr>
+                <td data-label="แผนก / ตำแหน่ง">ฝึกอบรม</td>
+                <td data-label="ชื่อ - นามสกุล">คุณกัณธราพนธ์ บุญรอด (คุณกรณ์)</td>
+                <td data-label="อีเมลติดต่อ">humanresource03@9singhabroker.com</td>
+                <td data-label="เบอร์ต่อ">4063</td>
+            </tr>
+            <tr>
+                <td data-label="แผนก / ตำแหน่ง">ฝ่ายไอทีและอาคารสถานที่</td>
+                <td data-label="ชื่อ - นามสกุล">คุณอมรรัตน์ จำปาเทศ (คุณหนุ่ม)</td>
+                <td data-label="อีเมลติดต่อ">admin02@9singhabroker.com</td>
+                <td data-label="เบอร์ต่อ">4064</td>
+            </tr>
+            <tr>
+                <td data-label="แผนก / ตำแหน่ง">ทีมควบคุมคุณภาพและลูกค้าสัมพันธ์</td>
+                <td data-label="ชื่อ - นามสกุล">คุณธีรวัต ม่านมุงศิลป์ (คุณบาส)</td>
+                <td data-label="อีเมลติดต่อ">QC02@9singhabroker.com</td>
+                <td data-label="เบอร์ต่อ">1054</td>
+            </tr>
+            <tr>
+                <td data-label="แผนก / ตำแหน่ง">Health & Cancer</td>
+                <td data-label="ชื่อ - นามสกุล">คุณศตวรรษ ชูจันทึก (คุณก็อต)</td>
+                <td data-label="อีเมลติดต่อ">spvs01@9singhabroker.com</td>
+                <td data-label="เบอร์ต่อ">2053</td>
+            </tr>
+            <tr>
+                <td data-label="แผนก / ตำแหน่ง">Senior Supervisor PA 1 A,B,C</td>
+                <td data-label="ชื่อ - นามสกุล">คุณปภาณ วัฒนาเนตร (คุณอ้น)</td>
+                <td data-label="อีเมลติดต่อ">spvs02@9singhabroker.com</td>
+                <td data-label="เบอร์ต่อ">1047</td>
+            </tr>
+            <tr>
+                <td data-label="แผนก / ตำแหน่ง">Supervisor PA 2 A</td>
+                <td data-label="ชื่อ - นามสกุล">คุณปุญญาดา วัฒนาเลิศสกุล (คุณปุญ)</td>
+                <td data-label="อีเมลติดต่อ">spvs03@9singhabroker.com</td>
+                <td data-label="เบอร์ต่อ">2052</td>
+            </tr>
+            <tr>
+                <td data-label="แผนก / ตำแหน่ง">Senior Supervisor PA 2 B</td>
+                <td data-label="ชื่อ - นามสกุล">คุณอมรรัตน์ แสงศรี (คุณมร)</td>
+                <td data-label="อีเมลติดต่อ">spvs07@9singhabroker.com</td>
+                <td data-label="เบอร์ต่อ">1046</td>
+            </tr>
+            <tr>
+                <td data-label="แผนก / ตำแหน่ง">Supervisor PA 2 C</td>
+                <td data-label="ชื่อ - นามสกุล">คุณวิภาวะดี แก้วแสง (คุณแหม่ม)</td>
+                <td data-label="อีเมลติดต่อ">-</td>
+                <td data-label="เบอร์ต่อ">4069</td>
+            </tr>
+            <tr>
+                <td data-label="แผนก / ตำแหน่ง">Supervisor PA 1 D</td>
+                <td data-label="ชื่อ - นามสกุล">คุณบุญมี เคนท้าว (คุณเบียร์)</td>
+                <td data-label="อีเมลติดต่อ">-</td>
+                <td data-label="เบอร์ต่อ">4067</td>
+            </tr>
+            <tr>
+                <td data-label="แผนก / ตำแหน่ง">Retail 1</td>
+                <td data-label="ชื่อ - นามสกุล">คุณดิสสพล สินธุเสน (คุณอ้าย)</td>
+                <td data-label="อีเมลติดต่อ">spvs04@9singhabroker.com</td>
+                <td data-label="เบอร์ต่อ">4055</td>
+            </tr>
+            <tr>
+                <td data-label="แผนก / ตำแหน่ง">Retail 2</td>
+                <td data-label="ชื่อ - นามสกุล">คุณรจนา โพธิ์ชัยทอง (คุณแอ๊ป)</td>
+                <td data-label="อีเมลติดต่อ">spvs05@9singhabroker.com</td>
+                <td data-label="เบอร์ต่อ">5047</td>
+            </tr>
+            <tr>
+                <td data-label="แผนก / ตำแหน่ง">Retail 3</td>
+                <td data-label="ชื่อ - นามสกุล">คุณชัชวาลย์ นันตะราม (คุณบอย)</td>
+                <td data-label="อีเมลติดต่อ">spvs13@9singhabroker.com</td>
+                <td data-label="เบอร์ต่อ">3009</td>
+            </tr>
+            <tr>
+                <td data-label="แผนก / ตำแหน่ง">Retail 4</td>
+                <td data-label="ชื่อ - นามสกุล">คุณวุฒิศักดิ์ แก่นกุล (คุณปัง)</td>
+                <td data-label="อีเมลติดต่อ">-</td>
+                <td data-label="เบอร์ต่อ">4026</td>
+            </tr>
+            <tr>
+                <td data-label="แผนก / ตำแหน่ง">Motor 1</td>
+                <td data-label="ชื่อ - นามสกุล">คุณนฤภาณุรัช แก้วการเวกธัชกร (คุณใหม่)</td>
+                <td data-label="อีเมลติดต่อ">spvs09@9singhabroker.com</td>
+                <td data-label="เบอร์ต่อ">4068</td>
+            </tr>
+            <tr>
+                <td data-label="แผนก / ตำแหน่ง">การตลาดลูกค้าองค์กร</td>
+                <td data-label="ชื่อ - นามสกุล">คุณกวินลักษณ์ ทับทิม (คุณนวย)</td>
+                <td data-label="อีเมลติดต่อ">aecorporate@9singhabroker.com</td>
+                <td data-label="เบอร์ต่อ">4056</td>
+            </tr>
+            <tr>
+                <td data-label="แผนก / ตำแหน่ง">สื่อสารองค์กร</td>
+                <td data-label="ชื่อ - นามสกุล">คุณธรรมนูญ ครองยุทธ (คุณเจมส์)</td>
+                <td data-label="อีเมลติดต่อ">info@9singhabroker.com</td>
+                <td data-label="เบอร์ต่อ">2054</td>
+            </tr>
+            <tr>
+                <td data-label="แผนก / ตำแหน่ง">ห้องประชุม 1</td>
+                <td data-label="ชื่อ - นามสกุล">ห้องประชุมอาคาร2ชั้น1 (Room1)</td>
+                <td data-label="อีเมลติดต่อ">-</td>
+                <td data-label="เบอร์ต่อ">5001</td>
+            </tr>
+            <tr>
+                <td data-label="แผนก / ตำแหน่ง">ห้องประชุม 2</td>
+                <td data-label="ชื่อ - นามสกุล">ห้องเทรน อาคาร3ชั้น1ห้อง1 (Room2)</td>
+                <td data-label="อีเมลติดต่อ">-</td>
+                <td data-label="เบอร์ต่อ">5002</td>
+            </tr>
+            <tr>
+                <td data-label="แผนก / ตำแหน่ง">ห้องประชุม 3</td>
+                <td data-label="ชื่อ - นามสกุล">ห้องเทรน อาคาร3ชั้น1ห้อง2 (Room3)</td>
+                <td data-label="อีเมลติดต่อ">-</td>
+                <td data-label="เบอร์ต่อ">5003</td>
+            </tr>
+            <tr>
+                <td data-label="แผนก / ตำแหน่ง">ห้องประชุม ชั้น6</td>
+                <td data-label="ชื่อ - นามสกุล">ห้องประชุม อาคาร2ชั้น6 (Room4)</td>
+                <td data-label="อีเมลติดต่อ">-</td>
+                <td data-label="เบอร์ต่อ">5004</td>
+            </tr>
+        </tbody>
+    </table>
+    <div style="text-align: center; margin-top: 20px; font-size: 14px; color: #888;">
+        © 9 Singha Broker Co., Ltd. Internal Directory
+    </div>
+</div>
+
+<script>
+    // ฟังก์ชันค้นหาข้อมูลในตาราง
+    function searchTable() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("contactTable");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+            // ค้นหาจากทุกคอลัมน์ (0=ตำแหน่ง, 1=ชื่อ, 2=อีเมล, 3=เบอร์)
+            var tdPosition = tr[i].getElementsByTagName("td")[0];
+            var tdName = tr[i].getElementsByTagName("td")[1];
+            var tdEmail = tr[i].getElementsByTagName("td")[2];
+            var tdTel = tr[i].getElementsByTagName("td")[3];
+            
+            if (tdName || tdPosition || tdTel || tdEmail) {
+                var txtPosition = tdPosition.textContent || tdPosition.innerText;
+                var txtName = tdName.textContent || tdName.innerText;
+                var txtEmail = tdEmail.textContent || tdEmail.innerText;
+                var txtTel = tdTel.textContent || tdTel.innerText;
+
+                // เช็คเงื่อนไขค้นหา
+                if (txtName.toUpperCase().indexOf(filter) > -1 || 
+                    txtPosition.toUpperCase().indexOf(filter) > -1 || 
+                    txtEmail.toUpperCase().indexOf(filter) > -1 || 
+                    txtTel.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    // ฟังก์ชันตรวจสอบและไฮไลท์คนที่ (ออก) อัตโนมัติเมื่อโหลดหน้าเว็บ
+    window.onload = function() {
+        var table = document.getElementById("contactTable");
+        var tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            var tdName = tr[i].getElementsByTagName("td")[1];
+            if (tdName) {
+                var txtName = tdName.textContent || tdName.innerText;
+                if (txtName.includes("(ออก)")) {
+                    tr[i].classList.add("resigned");
+                }
+            }
+        }
+    };
+</script>
+
+</body>
+</html>
