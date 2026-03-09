@@ -9,15 +9,15 @@
 
 <style>
     /* =========================================
-       CLEAN & PROFESSIONAL THEME (TYPOGRAPHY FOCUSED)
+       CLEAN & PROFESSIONAL THEME
        ========================================= */
     :root {
         --bg-color: #f8fafc; 
         --card-bg: #ffffff;
-        --primary-navy: #0f172a; /* น้ำเงินเข้มขรึม สำหรับชื่อ */
-        --dept-blue: #0284c7; /* สีฟ้าน้ำทะเล สำหรับแผนก (แยกสีชัดเจน) */
+        --primary-navy: #0f172a; 
+        --dept-blue: #0284c7; 
         --accent-gold: #d4af37; 
-        --text-muted: #64748b; /* สีเทา สำหรับอีเมล */
+        --text-muted: #64748b; 
         --border-color: #e2e8f0;
         --danger: #ef4444;
         --success: #10b981;
@@ -61,7 +61,7 @@
     }
 
     /* =========================================
-       SEARCH BAR (SHARP & CLEAN)
+       SEARCH BAR 
        ========================================= */
     .search-wrapper {
         max-width: 700px; margin: -35px auto 40px;
@@ -93,7 +93,7 @@
     }
 
     /* =========================================
-       STABLE DATA GRID (DISTINCT COLORS)
+       DATA GRID 
        ========================================= */
     .table-responsive { width: 100%; overflow-x: auto; }
     
@@ -106,8 +106,8 @@
 
     th:nth-child(1) { width: 22%; }
     th:nth-child(2) { width: 28%; }
-    th:nth-child(3) { width: 35%; }
-    th:nth-child(4) { width: 15%; text-align: center; }
+    th:nth-child(3) { width: 32%; }
+    th:nth-child(4) { width: 18%; text-align: center; } 
     th.admin-col { width: 15%; text-align: center; display: none; }
     
     .is-admin th.admin-col { display: table-cell; }
@@ -121,7 +121,7 @@
     }
 
     td { 
-        padding: 18px 20px; 
+        padding: 16px 20px; 
         background-color: var(--card-bg);
         vertical-align: middle; 
         border-top: 1px solid var(--border-color);
@@ -130,49 +130,54 @@
         word-break: break-word;
     }
     
-    /* 1. แผนก: ใช้สีฟ้า Ocean Blue ให้ดูแตกต่าง แต่อ่านสบายตา */
     td:first-child { 
-        border-radius: 8px 0 0 8px; 
-        font-weight: 600; 
-        color: var(--dept-blue); 
-        font-size: 14.5px; /* เล็กลงนิดนึงเพื่อแยกความสำคัญ */
-        border-left: 4px solid transparent; 
-        letter-spacing: 0.3px;
+        border-radius: 8px 0 0 8px; font-weight: 600; color: var(--dept-blue); 
+        font-size: 14.5px; border-left: 4px solid transparent; letter-spacing: 0.3px;
     }
 
-    /* 2. ชื่อ-นามสกุล: ใช้สีน้ำเงินเข้มที่สุด และตัวหนา ให้สายตาโฟกัสจุดนี้ก่อน */
-    td:nth-child(2) { 
-        font-weight: 700; 
-        font-size: 16.5px; 
-        color: var(--primary-navy); 
-    }
-
-    /* 3. อีเมล: สีเทาซอฟต์ๆ ลดทอนความสนใจ */
-    td:nth-child(3) { 
-        color: var(--text-muted); 
-        font-size: 15px; 
-        font-weight: 400;
-    }
-    
-    td:nth-child(4) { 
-        border-radius: 0 8px 8px 0; text-align: center; 
-        border-right: 1px solid var(--border-color);
-    }
+    td:nth-child(2) { font-weight: 700; font-size: 16.5px; color: var(--primary-navy); }
+    td:nth-child(3) { color: var(--text-muted); font-size: 15px; font-weight: 400; }
+    td:nth-child(4) { border-radius: 0 8px 8px 0; text-align: center; border-right: 1px solid var(--border-color); }
 
     @media (hover: hover) {
         tbody tr:hover td { background-color: #f1f5f9; }
         tbody tr:hover td:first-child { border-left-color: var(--accent-gold); }
     }
 
+    /* =========================================
+       🔥 3D PHONE BADGE (CHAMPAGNE GOLD & NAVY TEXT) 🔥
+       ========================================= */
     .phone-badge {
-        display: inline-block; background: #f8fafc; 
-        color: var(--primary-navy); padding: 8px 20px; 
-        border-radius: 6px; font-weight: 700; font-size: 16px;
-        border: 1px solid var(--border-color);
+        display: inline-block; 
+        background: linear-gradient(135deg, #fdfbf7 0%, #f3e8c8 100%); /* สีแชมเปญโกลด์ดูแพง สว่างเข้ากับธีม */
+        color: var(--primary-navy); /* เปลี่ยนตัวเลขเป็นสีกรมท่าเข้ม */
+        padding: 8px 22px; 
+        border-radius: 30px; 
+        font-weight: 700; 
+        font-size: 17.5px;
+        letter-spacing: 1.5px;
+        border: 1px solid #d4af37; /* ขอบสีทองอ่อนๆ */
+        
+        /* สร้างมิติ 3D แบบคลีนๆ ไม่เลอะเทอะ */
+        box-shadow: 
+            inset 0 2px 0 rgba(255, 255, 255, 0.9), /* แสงสว่างสะท้อนขอบบนให้ดูนูน */
+            inset 0 -2px 0 rgba(212, 175, 55, 0.15), /* เงาด้านล่างของปุ่ม */
+            0 4px 6px rgba(0, 0, 0, 0.04), /* เงาตกกระทบพื้นบางๆ */
+            0 1px 3px rgba(212, 175, 55, 0.15); /* เรืองแสงสีทองอ่อนๆ */
+            
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8); /* เงาสีขาวใต้ตัวอักษรให้ดูสลักลึกลงไป */
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
+    /* เอฟเฟกต์ตอนนำเมาส์ไปชี้ (Hover 3D) */
     tbody tr:hover .phone-badge {
-        background: #ffffff; border-color: var(--accent-gold); color: var(--accent-gold);
+        transform: translateY(-2px); /* ปุ่มลอยขึ้น */
+        background: linear-gradient(135deg, #ffffff 0%, #faeaba 100%); /* สว่างขึ้นเวลากด */
+        box-shadow: 
+            inset 0 2px 0 rgba(255, 255, 255, 1),
+            inset 0 -2px 0 rgba(212, 175, 55, 0.2),
+            0 8px 15px rgba(212, 175, 55, 0.2), /* เงาสีทองขยายตัวสวยงาม */
+            0 3px 6px rgba(0, 0, 0, 0.05);
     }
 
     /* =========================================
@@ -212,9 +217,16 @@
 
     .editing td[contenteditable="true"] { background-color: #fefce8; outline: 1px solid var(--accent-gold); }
 
+    /* คนที่ออกแล้ว (สลายมิติ 3D ให้เรียบแบนและดูซอฟต์ลง) */
     tr.resigned td { color: #94a3b8 !important; text-decoration: line-through; background-color: #f8fafc;}
-    tr.resigned .phone-badge { background: transparent; border-color: transparent; text-decoration: line-through; }
+    tr.resigned .phone-badge { 
+        background: #e2e8f0; color: #94a3b8; 
+        border: 1px solid #cbd5e1; 
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.5); 
+        text-shadow: none; text-decoration: line-through;
+    }
     tr.resigned:hover td { background-color: #f1f5f9; }
+    tr.resigned:hover .phone-badge { transform: none; box-shadow: inset 0 1px 0 rgba(255,255,255,0.5); }
 
     .footer {
         text-align: center; margin-top: 40px; color: var(--text-muted);
