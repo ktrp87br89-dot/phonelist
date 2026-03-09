@@ -4,427 +4,374 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>รายชื่อผู้ติดต่อภายใน - 9 Singha Broker</title>
-<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
 <style>
+    /* =========================================
+       ULTRA LUXURY THEME VARIABLES
+       ========================================= */
     :root {
-        --primary-color: #0056b3; /* สีธีมหลัก */
-        --bg-color: #f4f7f6;
+        --bg-body: #f4f6f9;
         --card-bg: #ffffff;
-        --text-color: #333;
-        --border-color: #e0e0e0;
+        --primary-dark: #040f25; /* น้ำเงินไพลินเข้มมาก (เกือบดำ) ช่วยขับให้สีทองเด้งสุดๆ */
+        --gold-bright: #FFD700; /* ทองสว่าง */
+        --gold-glow: #FDB931;
+        --gold-gradient: linear-gradient(135deg, #FFF3B0 0%, #FFD700 40%, #F5A623 100%);
+        --text-main: #1f2937;
+        --text-muted: #6b7280;
+        --danger-color: #ef4444;
+        --success-color: #10b981;
+        --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     }
+
+    * { box-sizing: border-box; }
 
     body {
         font-family: 'Sarabun', sans-serif;
-        line-height: 1.6;
-        color: var(--text-color);
-        background-color: var(--bg-color);
-        margin: 0;
-        padding: 20px;
+        background-color: var(--bg-body);
+        color: var(--text-main);
+        margin: 0; padding: 0;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+    }
+
+    /* =========================================
+       HERO SECTION (HIGH IMPACT)
+       ========================================= */
+    .hero-section {
+        background: linear-gradient(135deg, #020617, #0f172a, #040f25);
+        padding: 85px 20px 115px;
+        text-align: center; color: white;
+        position: relative; 
+        border-bottom: 5px solid transparent;
+        border-image: var(--gold-gradient);
+        border-image-slice: 1;
+        box-shadow: 0 15px 40px rgba(4, 15, 37, 0.4);
+    }
+
+    .hero-section::before {
+        content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+        background: radial-gradient(circle at center, rgba(255, 215, 0, 0.1) 0%, transparent 60%);
+        pointer-events: none;
+    }
+
+    .hero-title {
+        font-size: 44px; font-weight: 700;
+        margin: 0 0 12px 0; letter-spacing: -0.5px;
+        background: var(--gold-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        /* เอฟเฟกต์แสงเรืองรองให้ดูว้าวและโดดเด่น */
+        filter: drop-shadow(0px 2px 15px rgba(255, 215, 0, 0.4));
+    }
+
+    .hero-subtitle { 
+        font-size: 19px; color: #e2e8f0; font-weight: 300; 
+        letter-spacing: 3px; text-transform: uppercase;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.5);
     }
 
     .container {
-        max-width: 1000px; /* ขยายความกว้างเล็กน้อยเพื่อให้พอดีกับอีเมล */
-        margin: 0 auto;
-        background-color: var(--card-bg);
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        max-width: 1150px; margin: 0 auto; padding: 0 20px 60px;
     }
 
-    h1 {
-        text-align: center;
-        font-size: 28px;
-        margin-bottom: 20px;
-        color: var(--primary-color);
-    }
-
-    /* Search Box Style */
-    .search-container {
-        margin-bottom: 20px;
-        text-align: center;
+    /* =========================================
+       SEARCH BAR (GLASSMORPHISM)
+       ========================================= */
+    .search-wrapper {
+        max-width: 750px; margin: -45px auto 50px;
+        position: relative; z-index: 10;
     }
 
     #searchInput {
-        width: 100%;
-        max-width: 400px;
-        padding: 12px 20px;
-        border: 2px solid #ddd;
-        border-radius: 25px;
-        font-family: 'Sarabun', sans-serif;
-        font-size: 16px;
+        width: 100%; height: 75px;
+        padding: 0 30px 0 70px;
+        font-family: 'Sarabun', sans-serif; font-size: 18px;
+        color: var(--text-main); 
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 215, 0, 0.4); 
+        border-radius: 40px;
+        box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15); 
         outline: none;
-        transition: border-color 0.3s;
+        transition: var(--transition);
     }
 
     #searchInput:focus {
-        border-color: var(--primary-color);
+        border-color: var(--gold-glow);
+        box-shadow: 0 25px 50px -12px rgba(255, 215, 0, 0.3);
+        transform: translateY(-4px);
     }
 
-    /* Table Style */
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 20px;
+    .search-wrapper::before {
+        content: "🔍"; position: absolute; left: 30px; top: 50%;
+        transform: translateY(-50%); font-size: 22px; color: #d4af37;
+        z-index: 11; pointer-events: none;
     }
 
-    th, td {
-        padding: 15px;
-        text-align: left;
-        border-bottom: 1px solid var(--border-color);
-        vertical-align: middle;
+    /* =========================================
+       DATA GRID (LUXURY CARDS)
+       ========================================= */
+    .table-responsive { width: 100%; overflow-x: visible; }
+    table { width: 100%; border-collapse: separate; border-spacing: 0 16px; }
+
+    thead th {
+        text-align: left; padding: 0 30px 10px;
+        color: var(--text-muted); font-size: 13px; font-weight: 700;
+        text-transform: uppercase; letter-spacing: 1.5px; border: none;
     }
 
-    th {
-        background-color: var(--primary-color);
-        color: white;
-        font-weight: 600;
-        text-align: center;
-        white-space: nowrap; /* ห้ามตัดคำในหัวตาราง */
+    tbody tr {
+        background-color: var(--card-bg);
+        box-shadow: 0 6px 16px rgba(0,0,0,0.04);
+        border-radius: 16px; position: relative;
+        opacity: 0; transform: translateY(20px);
+        animation: fadeUp 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
     }
 
-    /* จัดการช่องเบอร์โทรให้ชิดขวาหรือกลางสวยๆ */
-    td:last-child {
-        font-weight: 700;
-        text-align: center;
-        color: var(--primary-color);
-        font-size: 1.1em;
-        width: 100px; /* กำหนดความกว้างขั้นต่ำให้เบอร์โทร */
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+    @media (hover: hover) {
+        tbody tr:hover {
+            transform: translateY(-6px) scale(1.008);
+            box-shadow: 0 25px 50px -12px rgba(212, 175, 55, 0.2);
+            z-index: 5; border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+        tbody tr::before {
+            content: ''; position: absolute; left: -1px; top: -1px; bottom: -1px;
+            width: 6px; background: var(--gold-gradient);
+            border-radius: 16px 0 0 16px; opacity: 0; transition: var(--transition);
+        }
+        tbody tr:hover::before { opacity: 1; }
     }
 
-    /* จัดการช่องอีเมล */
-    td:nth-child(3) {
-        color: #555;
-        font-size: 0.95em;
+    td { padding: 22px 30px; vertical-align: middle; border-top: 1px solid transparent; border-bottom: 1px solid transparent; }
+    td:first-child { border-radius: 16px 0 0 16px; font-weight: 600; color: var(--primary-dark); width: 22%; border-left: 1px solid transparent; }
+    td:nth-child(2) { font-weight: 700; font-size: 17px; width: 28%; }
+    td:nth-child(3) { color: var(--text-muted); font-size: 15px; width: 30%; font-weight: 300; }
+    td:nth-child(4) { border-radius: 0 16px 16px 0; width: 15%; text-align: right; border-right: 1px solid transparent; }
+
+    .phone-badge {
+        display: inline-block; background: #fffcf0; 
+        color: #b38728; padding: 10px 24px; 
+        border-radius: 40px; font-weight: 700; font-size: 18px;
+        border: 1px solid rgba(212, 175, 55, 0.4);
+        box-shadow: 0 4px 10px rgba(212, 175, 55, 0.1);
+        transition: var(--transition);
     }
 
-    tr:hover {
-        background-color: #f9f9f9;
+    tbody tr:hover .phone-badge {
+        background: var(--gold-gradient); color: var(--primary-dark);
+        border-color: transparent; box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
     }
 
-    /* Style for Resigned Employees */
-    tr.resigned {
-        color: #aaa;
-        background-color: #fcfcfc;
-    }
-    
-    tr.resigned td:last-child {
-        color: #aaa;
-        text-decoration: line-through;
+    /* =========================================
+       ADMIN PANEL & MODAL
+       ========================================= */
+    #adminPanel {
+        display: none; background: white; padding: 25px; border-radius: 20px;
+        margin-bottom: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        border: 2px solid rgba(255, 215, 0, 0.5);
+        flex-wrap: wrap; gap: 12px; justify-content: flex-end; align-items: center;
     }
 
-    /* Mobile Responsive Logic */
+    .admin-title { margin-right: auto; font-weight: 700; color: var(--primary-dark); font-size: 18px; }
+    .admin-title span { color: var(--gold-glow); }
+
+    .btn {
+        padding: 12px 20px; border-radius: 30px; font-family: 'Sarabun', sans-serif;
+        font-weight: 600; cursor: pointer; border: none; transition: var(--transition);
+        font-size: 14px; display: inline-flex; align-items: center; gap: 8px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .btn-add { background: var(--primary-dark); color: white; }
+    .btn-add:hover { background: #000; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+    .btn-export-html { background: #4f46e5; color: white; }
+    .btn-export-png { background: #db2777; color: white; }
+
+    .btn-edit { background: #f59e0b; color: white; padding: 8px 16px; font-size: 13px; border-radius: 20px; box-shadow:none;}
+    .btn-delete { background: var(--danger-color); color: white; padding: 8px 16px; font-size: 13px; border-radius: 20px; box-shadow:none;}
+    .btn-confirm { background: var(--success-color); color: white; padding: 8px 16px; font-size: 13px; border-radius: 20px;}
+
+    .admin-col { display: none; }
+    .is-admin .admin-col { display: table-cell; text-align: right; width: 15%; }
+    .is-admin #adminPanel { display: flex; }
+
+    .editing td[contenteditable="true"] {
+        background-color: #fffbeb; outline: 2px dashed var(--gold-glow); outline-offset: -4px;
+    }
+
+    tr.resigned { opacity: 0.5; filter: grayscale(100%); }
+    tr.resigned:hover { opacity: 0.8; filter: grayscale(50%); transform: none; box-shadow: 0 5px 15px rgba(0,0,0,0.03); border-color:transparent;}
+    tr.resigned:hover::before { display: none; }
+    tr.resigned .phone-badge { background: #f1f5f9; color: #94a3b8; border-color: #e2e8f0; box-shadow: none; }
+
+    .footer {
+        text-align: center; margin-top: 50px; color: var(--text-muted);
+        font-size: 14px; position: relative; padding-top: 20px;
+        border-top: 1px solid rgba(0,0,0,0.05); letter-spacing: 1px;
+    }
+
+    .admin-trigger {
+        position: absolute; right: 20px; bottom: 0; cursor: pointer;
+        opacity: 0.1; transition: opacity 0.3s; padding: 10px; font-size: 18px;
+    }
+    .admin-trigger:hover { opacity: 1; }
+
+    /* Custom Password Modal */
+    #loginModal {
+        display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(4, 15, 37, 0.8); backdrop-filter: blur(8px);
+        z-index: 9999; align-items: center; justify-content: center;
+    }
+    .modal-content {
+        background: white; padding: 35px; border-radius: 24px; width: 90%; max-width: 400px;
+        text-align: center; box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        transform: scale(0.9); opacity: 0; transition: all 0.3s ease;
+    }
+    .modal-content.show { transform: scale(1); opacity: 1; }
+    .modal-content h3 { margin-top: 0; color: var(--primary-dark); font-size: 22px; margin-bottom: 20px;}
+    .modal-input {
+        width: 100%; padding: 15px 20px; margin-bottom: 20px; border: 2px solid #e2e8f0;
+        border-radius: 12px; font-size: 18px; outline: none; font-family: 'Sarabun';
+        text-align: center; letter-spacing: 2px;
+    }
+    .modal-input:focus { border-color: var(--gold-glow); box-shadow: 0 0 0 4px rgba(255,215,0,0.15); }
+    .modal-buttons { display: flex; gap: 12px; justify-content: center; }
+
     @media screen and (max-width: 768px) {
-        table, thead, tbody, th, td, tr { 
-            display: block; 
-        }
-        
-        thead { 
-            display: none; 
-        }
-        
-        tr { 
-            margin-bottom: 15px; 
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            background: #fff;
-        }
-        
-        td { 
-            padding-left: 40%; 
-            position: relative;
-            border-bottom: 1px solid #eee;
-            text-align: right; /* จัดข้อความชิดขวาในมือถือ */
-            padding-right: 15px;
-        }
-
-        td:last-child {
-            border-bottom: none;
-            text-align: right; /* เบอร์โทรชิดขวา */
-        }
-        
-        td:before { 
-            content: attr(data-label); 
-            position: absolute;
-            left: 15px;
-            width: 35%;
-            text-align: left;
-            font-weight: bold;
-            color: #666;
-            white-space: nowrap;
-        }
-        
-        /* ปรับให้อีเมลยาวๆ ตัดคำได้ในมือถือ */
-        td:nth-child(3) {
-            word-break: break-all;
-        }
+        .hero-section { padding: 50px 20px 80px; }
+        .hero-title { font-size: 32px; }
+        #adminPanel { flex-direction: column; align-items: stretch; text-align: center; }
+        .admin-title { margin-right: 0; margin-bottom: 10px; text-align: center; }
+        table, thead, tbody, th, td, tr { display: block; }
+        thead { display: none; }
+        tr { margin-bottom: 20px; padding: 25px; }
+        td { width: 100% !important; padding: 5px 0; }
+        td:first-child { font-size: 13px; letter-spacing: 1px; color: #b38728; margin-bottom: 10px; }
+        td:nth-child(2) { font-size: 20px; margin-bottom: 5px; }
+        td:nth-child(3) { margin-bottom: 20px; word-break: break-all; }
+        td:nth-child(4) { text-align: left; padding-top: 15px; border-top: 1px solid rgba(0,0,0,0.05); }
+        .is-admin .admin-col { display: flex; gap:10px; text-align: left; padding-top: 15px; border-top: 1px solid #eee; margin-top:15px;}
     }
 </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>รายชื่อผู้ติดต่อภายใน</h1>
-    
-    <div class="search-container">
-        <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="ค้นหาชื่อ, แผนก, อีเมล หรือ เบอร์โทร...">
+<div class="hero-section" id="captureHeader">
+    <h1 class="hero-title">ระบบค้นหารายชื่อผู้ติดต่อภายใน</h1>
+    <div class="hero-subtitle">9 Singha Broker Directory</div>
+</div>
+
+<div class="container" id="captureArea">
+    <div class="search-wrapper">
+        <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="ค้นหาชื่อ, แผนก, อีเมล หรือ เบอร์โทรศัพท์...">
     </div>
 
-    <table id="contactTable">
-        <thead>
-            <tr>
-                <th>แผนก / ตำแหน่ง</th>
-                <th>ชื่อ - นามสกุล (ชื่อเล่น)</th>
-                <th>อีเมลติดต่อ</th> <th>เบอร์ต่อ</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td data-label="แผนก / ตำแหน่ง">ที่ปรึกษาองค์กร</td>
-                <td data-label="ชื่อ - นามสกุล">คุณชญณา ศิริภิรมย์ (คุณจ๊ะ)</td>
-                <td data-label="อีเมลติดต่อ">..........@9singhabroker.com</td>
-                <td data-label="เบอร์ต่อ">4070</td>
-            </tr>
-            <tr>
-                <td data-label="แผนก / ตำแหน่ง">ผจก.บัญชีและการเงิน</td>
-                <td data-label="ชื่อ - นามสกุล">คุณสุดารัตน์ ชุมพล (คุณอี๊ด)</td>
-                <td data-label="อีเมลติดต่อ">accountant@9singhabroker.com</td>
-                <td data-label="เบอร์ต่อ">4052</td>
-            </tr>
-            <tr>
-                <td data-label="แผนก / ตำแหน่ง">บัญชีและการเงิน</td>
-                <td data-label="ชื่อ - นามสกุล">คุณมาริสา ตราชูธรรม (คุณสา)</td>
-                <td data-label="อีเมลติดต่อ">accountant02@9singhabroker.com</td>
-                <td data-label="เบอร์ต่อ">4059</td>
-            </tr>
-            <tr>
-                <td data-label="แผนก / ตำแหน่ง">การเงิน</td>
-                <td data-label="ชื่อ - นามสกุล">คุณอินทิรา มูฮำหมัด (คุณม่อน)</td>
-                <td data-label="อีเมลติดต่อ">finance@9singhabroker.com</td>
-                <td data-label="เบอร์ต่อ">4057</td>
-            </tr>
-            <tr>
-                <td data-label="แผนก / ตำแหน่ง">บัญชีและการเงิน</td>
-                <td data-label="ชื่อ - นามสกุล">คุณหทัยชนก จำรัส (คุณปราย)</td>
-                <td data-label="อีเมลติดต่อ">accountant05@9singhabroker.com</td>
-                <td data-label="เบอร์ต่อ">4053</td>
-            </tr>
-            <tr>
-                <td data-label="แผนก / ตำแหน่ง">บัญชี</td>
-                <td data-label="ชื่อ - นามสกุล">ว่าง (ออก)</td>
-                <td data-label="อีเมลติดต่อ">accountant03@9singhabroker.com</td>
-                <td data-label="เบอร์ต่อ">4060</td>
-            </tr>
-            <tr>
-                <td data-label="แผนก / ตำแหน่ง">Asst. Sec. MD</td>
-                <td data-label="ชื่อ - นามสกุล">คุณชลดา พรมนิล (คุณครีม)</td>
-                <td data-label="อีเมลติดต่อ">admin01@9singhabroker.com</td>
-                <td data-label="เบอร์ต่อ">2049</td>
-            </tr>
-            <tr>
-                <td data-label="แผนก / ตำแหน่ง">Compensation & Benefit</td>
-                <td data-label="ชื่อ - นามสกุล">คุณพรปวีณ์ สอนสมนึก (คุณเจน)</td>
-                <td data-label="อีเมลติดต่อ">admin03@9singhabroker.com</td>
-                <td data-label="เบอร์ต่อ">4051</td>
-            </tr>
-            <tr>
-                <td data-label="แผนก / ตำแหน่ง">ผบ.ทีมทรัพยากรบุคคลฯ</td>
-                <td data-label="ชื่อ - นามสกุล">คุณพีร์กวินท์ วิไลประจวบแสง (คุณเล็ก)</td>
-                <td data-label="อีเมลติดต่อ">humanresource01@9singhabroker.com</td>
-                <td data-label="เบอร์ต่อ">4062</td>
-            </tr>
-            <tr>
-                <td data-label="แผนก / ตำแหน่ง">สรรหาบุคลากร</td>
-                <td data-label="ชื่อ - นามสกุล">คุณณัฐธิดา เพชรแก้ว (คุณสมายด์)</td>
-                <td data-label="อีเมลติดต่อ">humanresource02@9singhabroker.com</td>
-                <td data-label="เบอร์ต่อ">4050</td>
-            </tr>
-            <tr>
-                <td data-label="แผนก / ตำแหน่ง">สรรหาบุคลากร</td>
-                <td data-label="ชื่อ - นามสกุล">คุณธนโชติ เคนศิลา (คุณปอนด์)</td>
-                <td data-label="อีเมลติดต่อ">humanresource04@9singhabroker.com</td>
-                <td data-label="เบอร์ต่อ">4065</td>
-            </tr>
-            <tr>
-                <td data-label="แผนก / ตำแหน่ง">สนับสนุนทรัพยากรบุคคล</td>
-                <td data-label="ชื่อ - นามสกุล">คุณพงศธร นาโควงค์ (คุณตี๋เล็ก)</td>
-                <td data-label="อีเมลติดต่อ">admin.hr@9singhabroker.com</td>
-                <td data-label="เบอร์ต่อ">4066</td>
-            </tr>
-            <tr>
-                <td data-label="แผนก / ตำแหน่ง">เจ้าหน้าที่บริหารงานบุคคล</td>
-                <td data-label="ชื่อ - นามสกุล">คุณกิตติศักดิ์ ศรีตา (คุณบีม)</td>
-                <td data-label="อีเมลติดต่อ">humanresource05@9singhabroker.com</td>
-                <td data-label="เบอร์ต่อ">4058</td>
-            </tr>
-            <tr>
-                <td data-label="แผนก / ตำแหน่ง">บริหารสำนักงานประชาสัมพันธ์,(จัดซื้อ)</td>
-                <td data-label="ชื่อ - นามสกุล">คุณนิรภา เอี่ยมมรางกูร (คุณจุ๊บ)</td>
-                <td data-label="อีเมลติดต่อ">purchasing@9singhabroker.com</td>
-                <td data-label="เบอร์ต่อ">4054</td>
-            </tr>
-            <tr>
-                <td data-label="แผนก / ตำแหน่ง">Sec. DMD</td>
-                <td data-label="ชื่อ - นามสกุล">ว่าง (ว่าง)</td>
-                <td data-label="อีเมลติดต่อ">-</td>
-                <td data-label="เบอร์ต่อ">2051</td>
-            </tr>
-            <tr>
-                <td data-label="แผนก / ตำแหน่ง">ฝึกอบรม</td>
-                <td data-label="ชื่อ - นามสกุล">คุณกัณธราพนธ์ บุญรอด (คุณกรณ์)</td>
-                <td data-label="อีเมลติดต่อ">humanresource03@9singhabroker.com</td>
-                <td data-label="เบอร์ต่อ">4063</td>
-            </tr>
-            <tr>
-                <td data-label="แผนก / ตำแหน่ง">ฝ่ายไอทีและอาคารสถานที่</td>
-                <td data-label="ชื่อ - นามสกุล">คุณอมรรัตน์ จำปาเทศ (คุณหนุ่ม)</td>
-                <td data-label="อีเมลติดต่อ">admin02@9singhabroker.com</td>
-                <td data-label="เบอร์ต่อ">4064</td>
-            </tr>
-            <tr>
-                <td data-label="แผนก / ตำแหน่ง">ทีมควบคุมคุณภาพและลูกค้าสัมพันธ์</td>
-                <td data-label="ชื่อ - นามสกุล">คุณธีรวัต ม่านมุงศิลป์ (คุณบาส)</td>
-                <td data-label="อีเมลติดต่อ">QC02@9singhabroker.com</td>
-                <td data-label="เบอร์ต่อ">1054</td>
-            </tr>
-            <tr>
-                <td data-label="แผนก / ตำแหน่ง">Health & Cancer</td>
-                <td data-label="ชื่อ - นามสกุล">คุณศตวรรษ ชูจันทึก (คุณก็อต)</td>
-                <td data-label="อีเมลติดต่อ">spvs01@9singhabroker.com</td>
-                <td data-label="เบอร์ต่อ">2053</td>
-            </tr>
-            <tr>
-                <td data-label="แผนก / ตำแหน่ง">Senior Supervisor PA 1 A,B,C</td>
-                <td data-label="ชื่อ - นามสกุล">คุณปภาณ วัฒนาเนตร (คุณอ้น)</td>
-                <td data-label="อีเมลติดต่อ">spvs02@9singhabroker.com</td>
-                <td data-label="เบอร์ต่อ">1047</td>
-            </tr>
-            <tr>
-                <td data-label="แผนก / ตำแหน่ง">Supervisor PA 2 A</td>
-                <td data-label="ชื่อ - นามสกุล">คุณปุญญาดา วัฒนาเลิศสกุล (คุณปุญ)</td>
-                <td data-label="อีเมลติดต่อ">spvs03@9singhabroker.com</td>
-                <td data-label="เบอร์ต่อ">2052</td>
-            </tr>
-            <tr>
-                <td data-label="แผนก / ตำแหน่ง">Senior Supervisor PA 2 B</td>
-                <td data-label="ชื่อ - นามสกุล">คุณอมรรัตน์ แสงศรี (คุณมร)</td>
-                <td data-label="อีเมลติดต่อ">spvs07@9singhabroker.com</td>
-                <td data-label="เบอร์ต่อ">1046</td>
-            </tr>
-            <tr>
-                <td data-label="แผนก / ตำแหน่ง">Supervisor PA 2 C</td>
-                <td data-label="ชื่อ - นามสกุล">คุณวิภาวะดี แก้วแสง (คุณแหม่ม)</td>
-                <td data-label="อีเมลติดต่อ">-</td>
-                <td data-label="เบอร์ต่อ">4069</td>
-            </tr>
-            <tr>
-                <td data-label="แผนก / ตำแหน่ง">Supervisor PA 1 D</td>
-                <td data-label="ชื่อ - นามสกุล">คุณบุญมี เคนท้าว (คุณเบียร์)</td>
-                <td data-label="อีเมลติดต่อ">-</td>
-                <td data-label="เบอร์ต่อ">4067</td>
-            </tr>
-            <tr>
-                <td data-label="แผนก / ตำแหน่ง">Retail 1</td>
-                <td data-label="ชื่อ - นามสกุล">คุณดิสสพล สินธุเสน (คุณอ้าย)</td>
-                <td data-label="อีเมลติดต่อ">spvs04@9singhabroker.com</td>
-                <td data-label="เบอร์ต่อ">4055</td>
-            </tr>
-            <tr>
-                <td data-label="แผนก / ตำแหน่ง">Retail 2</td>
-                <td data-label="ชื่อ - นามสกุล">คุณรจนา โพธิ์ชัยทอง (คุณแอ๊ป)</td>
-                <td data-label="อีเมลติดต่อ">spvs05@9singhabroker.com</td>
-                <td data-label="เบอร์ต่อ">5047</td>
-            </tr>
-            <tr>
-                <td data-label="แผนก / ตำแหน่ง">Retail 3</td>
-                <td data-label="ชื่อ - นามสกุล">คุณชัชวาลย์ นันตะราม (คุณบอย)</td>
-                <td data-label="อีเมลติดต่อ">spvs13@9singhabroker.com</td>
-                <td data-label="เบอร์ต่อ">3009</td>
-            </tr>
-            <tr>
-                <td data-label="แผนก / ตำแหน่ง">Retail 4</td>
-                <td data-label="ชื่อ - นามสกุล">คุณวุฒิศักดิ์ แก่นกุล (คุณปัง)</td>
-                <td data-label="อีเมลติดต่อ">-</td>
-                <td data-label="เบอร์ต่อ">4026</td>
-            </tr>
-            <tr>
-                <td data-label="แผนก / ตำแหน่ง">Motor 1</td>
-                <td data-label="ชื่อ - นามสกุล">คุณนฤภาณุรัช แก้วการเวกธัชกร (คุณใหม่)</td>
-                <td data-label="อีเมลติดต่อ">spvs09@9singhabroker.com</td>
-                <td data-label="เบอร์ต่อ">4068</td>
-            </tr>
-            <tr>
-                <td data-label="แผนก / ตำแหน่ง">การตลาดลูกค้าองค์กร</td>
-                <td data-label="ชื่อ - นามสกุล">คุณกวินลักษณ์ ทับทิม (คุณนวย)</td>
-                <td data-label="อีเมลติดต่อ">aecorporate@9singhabroker.com</td>
-                <td data-label="เบอร์ต่อ">4056</td>
-            </tr>
-            <tr>
-                <td data-label="แผนก / ตำแหน่ง">สื่อสารองค์กร</td>
-                <td data-label="ชื่อ - นามสกุล">คุณธรรมนูญ ครองยุทธ (คุณเจมส์)</td>
-                <td data-label="อีเมลติดต่อ">info@9singhabroker.com</td>
-                <td data-label="เบอร์ต่อ">2054</td>
-            </tr>
-            <tr>
-                <td data-label="แผนก / ตำแหน่ง">ห้องประชุม 1</td>
-                <td data-label="ชื่อ - นามสกุล">ห้องประชุมอาคาร2ชั้น1 (Room1)</td>
-                <td data-label="อีเมลติดต่อ">-</td>
-                <td data-label="เบอร์ต่อ">5001</td>
-            </tr>
-            <tr>
-                <td data-label="แผนก / ตำแหน่ง">ห้องประชุม 2</td>
-                <td data-label="ชื่อ - นามสกุล">ห้องเทรน อาคาร3ชั้น1ห้อง1 (Room2)</td>
-                <td data-label="อีเมลติดต่อ">-</td>
-                <td data-label="เบอร์ต่อ">5002</td>
-            </tr>
-            <tr>
-                <td data-label="แผนก / ตำแหน่ง">ห้องประชุม 3</td>
-                <td data-label="ชื่อ - นามสกุล">ห้องเทรน อาคาร3ชั้น1ห้อง2 (Room3)</td>
-                <td data-label="อีเมลติดต่อ">-</td>
-                <td data-label="เบอร์ต่อ">5003</td>
-            </tr>
-            <tr>
-                <td data-label="แผนก / ตำแหน่ง">ห้องประชุม ชั้น6</td>
-                <td data-label="ชื่อ - นามสกุล">ห้องประชุม อาคาร2ชั้น6 (Room4)</td>
-                <td data-label="อีเมลติดต่อ">-</td>
-                <td data-label="เบอร์ต่อ">5004</td>
-            </tr>
-        </tbody>
-    </table>
-    <div style="text-align: center; margin-top: 20px; font-size: 14px; color: #888;">
-        © 9 Singha Broker Co., Ltd. Internal Directory
+    <div id="adminPanel">
+        <div class="admin-title"><span>👑</span> VIP Admin Management</div>
+        <button class="btn btn-add" onclick="addNewRow()">➕ เพิ่มรายชื่อใหม่</button>
+        <button class="btn btn-export-html" onclick="downloadHTML()">📥 บันทึกไฟล์ .html</button>
+        <button class="btn btn-export-png" onclick="downloadPNG()">🖼️ บันทึกไฟล์ภาพ</button>
+    </div>
+
+    <div class="table-responsive">
+        <table id="contactTable">
+            <thead>
+                <tr>
+                    <th>แผนก / ตำแหน่ง</th>
+                    <th>ชื่อ - นามสกุล</th>
+                    <th>อีเมลติดต่อ</th> 
+                    <th style="text-align: center;">เบอร์ต่อ</th>
+                    <th class="admin-col">จัดการ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>ที่ปรึกษาองค์กร</td><td>คุณชญณา ศิริภิรมย์ (คุณจ๊ะ)</td><td>..........@9singhabroker.com</td><td><span class="phone-badge">4070</span></td><td class="admin-col"><button class="btn btn-edit" onclick="toggleEdit(this)">แก้ไข</button> <button class="btn btn-delete" onclick="deleteRow(this)">ลบ</button></td></tr>
+                <tr><td>ผจก.บัญชีและการเงิน</td><td>คุณสุดารัตน์ ชุมพล (คุณอี๊ด)</td><td>accountant@9singhabroker.com</td><td><span class="phone-badge">4052</span></td><td class="admin-col"><button class="btn btn-edit" onclick="toggleEdit(this)">แก้ไข</button> <button class="btn btn-delete" onclick="deleteRow(this)">ลบ</button></td></tr>
+                <tr><td>บัญชีและการเงิน</td><td>คุณมาริสา ตราชูธรรม (คุณสา)</td><td>accountant02@9singhabroker.com</td><td><span class="phone-badge">4059</span></td><td class="admin-col"><button class="btn btn-edit" onclick="toggleEdit(this)">แก้ไข</button> <button class="btn btn-delete" onclick="deleteRow(this)">ลบ</button></td></tr>
+                <tr><td>การเงิน</td><td>คุณอินทิรา มูฮำหมัด (คุณม่อน)</td><td>finance@9singhabroker.com</td><td><span class="phone-badge">4057</span></td><td class="admin-col"><button class="btn btn-edit" onclick="toggleEdit(this)">แก้ไข</button> <button class="btn btn-delete" onclick="deleteRow(this)">ลบ</button></td></tr>
+                <tr><td>บัญชีและการเงิน</td><td>คุณหทัยชนก จำรัส (คุณปราย)</td><td>accountant05@9singhabroker.com</td><td><span class="phone-badge">4053</span></td><td class="admin-col"><button class="btn btn-edit" onclick="toggleEdit(this)">แก้ไข</button> <button class="btn btn-delete" onclick="deleteRow(this)">ลบ</button></td></tr>
+                <tr><td>บัญชี</td><td>ว่าง (ออก)</td><td>accountant03@9singhabroker.com</td><td><span class="phone-badge">4060</span></td><td class="admin-col"><button class="btn btn-edit" onclick="toggleEdit(this)">แก้ไข</button> <button class="btn btn-delete" onclick="deleteRow(this)">ลบ</button></td></tr>
+                <tr><td>Asst. Sec. MD</td><td>คุณชลดา พรมนิล (คุณครีม)</td><td>admin01@9singhabroker.com</td><td><span class="phone-badge">2049</span></td><td class="admin-col"><button class="btn btn-edit" onclick="toggleEdit(this)">แก้ไข</button> <button class="btn btn-delete" onclick="deleteRow(this)">ลบ</button></td></tr>
+                <tr><td>Compensation & Benefit</td><td>คุณพรปวีณ์ สอนสมนึก (คุณเจน)</td><td>admin03@9singhabroker.com</td><td><span class="phone-badge">4051</span></td><td class="admin-col"><button class="btn btn-edit" onclick="toggleEdit(this)">แก้ไข</button> <button class="btn btn-delete" onclick="deleteRow(this)">ลบ</button></td></tr>
+                <tr><td>ผบ.ทีมทรัพยากรบุคคลฯ</td><td>คุณพีร์กวินท์ วิไลประจวบแสง (คุณเล็ก)</td><td>humanresource01@9singhabroker.com</td><td><span class="phone-badge">4062</span></td><td class="admin-col"><button class="btn btn-edit" onclick="toggleEdit(this)">แก้ไข</button> <button class="btn btn-delete" onclick="deleteRow(this)">ลบ</button></td></tr>
+                <tr><td>สรรหาบุคลากร</td><td>คุณณัฐธิดา เพชรแก้ว (คุณสมายด์)</td><td>humanresource02@9singhabroker.com</td><td><span class="phone-badge">4050</span></td><td class="admin-col"><button class="btn btn-edit" onclick="toggleEdit(this)">แก้ไข</button> <button class="btn btn-delete" onclick="deleteRow(this)">ลบ</button></td></tr>
+                <tr><td>สรรหาบุคลากร</td><td>คุณธนโชติ เคนศิลา (คุณปอนด์)</td><td>humanresource04@9singhabroker.com</td><td><span class="phone-badge">4065</span></td><td class="admin-col"><button class="btn btn-edit" onclick="toggleEdit(this)">แก้ไข</button> <button class="btn btn-delete" onclick="deleteRow(this)">ลบ</button></td></tr>
+                <tr><td>สนับสนุนทรัพยากรบุคคล</td><td>คุณพงศธร นาโควงค์ (คุณตี๋เล็ก)</td><td>admin.hr@9singhabroker.com</td><td><span class="phone-badge">4066</span></td><td class="admin-col"><button class="btn btn-edit" onclick="toggleEdit(this)">แก้ไข</button> <button class="btn btn-delete" onclick="deleteRow(this)">ลบ</button></td></tr>
+                <tr><td>เจ้าหน้าที่บริหารงานบุคคล</td><td>คุณกิตติศักดิ์ ศรีตา (คุณบีม)</td><td>humanresource05@9singhabroker.com</td><td><span class="phone-badge">4058</span></td><td class="admin-col"><button class="btn btn-edit" onclick="toggleEdit(this)">แก้ไข</button> <button class="btn btn-delete" onclick="deleteRow(this)">ลบ</button></td></tr>
+                <tr><td>บริหารสำนักงานประชาสัมพันธ์,(จัดซื้อ)</td><td>คุณนิรภา เอี่ยมมรางกูร (คุณจุ๊บ)</td><td>purchasing@9singhabroker.com</td><td><span class="phone-badge">4054</span></td><td class="admin-col"><button class="btn btn-edit" onclick="toggleEdit(this)">แก้ไข</button> <button class="btn btn-delete" onclick="deleteRow(this)">ลบ</button></td></tr>
+                <tr><td>Sec. DMD</td><td>ว่าง (ว่าง)</td><td>-</td><td><span class="phone-badge">2051</span></td><td class="admin-col"><button class="btn btn-edit" onclick="toggleEdit(this)">แก้ไข</button> <button class="btn btn-delete" onclick="deleteRow(this)">ลบ</button></td></tr>
+                <tr><td>ฝึกอบรม</td><td>คุณกัณธราพนธ์ บุญรอด (คุณกรณ์)</td><td>humanresource03@9singhabroker.com</td><td><span class="phone-badge">4063</span></td><td class="admin-col"><button class="btn btn-edit" onclick="toggleEdit(this)">แก้ไข</button> <button class="btn btn-delete" onclick="deleteRow(this)">ลบ</button></td></tr>
+                <tr><td>ฝ่ายไอทีและอาคารสถานที่</td><td>คุณอมรรัตน์ จำปาเทศ (คุณหนุ่ม)</td><td>admin02@9singhabroker.com</td><td><span class="phone-badge">4064</span></td><td class="admin-col"><button class="btn btn-edit" onclick="toggleEdit(this)">แก้ไข</button> <button class="btn btn-delete" onclick="deleteRow(this)">ลบ</button></td></tr>
+                <tr><td>ทีมควบคุมคุณภาพและลูกค้าสัมพันธ์</td><td>คุณธีรวัต ม่านมุงศิลป์ (คุณบาส)</td><td>QC02@9singhabroker.com</td><td><span class="phone-badge">1054</span></td><td class="admin-col"><button class="btn btn-edit" onclick="toggleEdit(this)">แก้ไข</button> <button class="btn btn-delete" onclick="deleteRow(this)">ลบ</button></td></tr>
+                <tr><td>Health & Cancer</td><td>คุณศตวรรษ ชูจันทึก (คุณก็อต)</td><td>spvs01@9singhabroker.com</td><td><span class="phone-badge">2053</span></td><td class="admin-col"><button class="btn btn-edit" onclick="toggleEdit(this)">แก้ไข</button> <button class="btn btn-delete" onclick="deleteRow(this)">ลบ</button></td></tr>
+                <tr><td>Senior Supervisor PA 1 A,B,C</td><td>คุณปภาณ วัฒนาเนตร (คุณอ้น)</td><td>spvs02@9singhabroker.com</td><td><span class="phone-badge">1047</span></td><td class="admin-col"><button class="btn btn-edit" onclick="toggleEdit(this)">แก้ไข</button> <button class="btn btn-delete" onclick="deleteRow(this)">ลบ</button></td></tr>
+                <tr><td>Supervisor PA 2 A</td><td>คุณปุญญาดา วัฒนาเลิศสกุล (คุณปุญ)</td><td>spvs03@9singhabroker.com</td><td><span class="phone-badge">2052</span></td><td class="admin-col"><button class="btn btn-edit" onclick="toggleEdit(this)">แก้ไข</button> <button class="btn btn-delete" onclick="deleteRow(this)">ลบ</button></td></tr>
+                <tr><td>Senior Supervisor PA 2 B</td><td>คุณอมรรัตน์ แสงศรี (คุณมร)</td><td>spvs07@9singhabroker.com</td><td><span class="phone-badge">1046</span></td><td class="admin-col"><button class="btn btn-edit" onclick="toggleEdit(this)">แก้ไข</button> <button class="btn btn-delete" onclick="deleteRow(this)">ลบ</button></td></tr>
+                <tr><td>Supervisor PA 2 C</td><td>คุณวิภาวะดี แก้วแสง (คุณแหม่ม)</td><td>-</td><td><span class="phone-badge">4069</span></td><td class="admin-col"><button class="btn btn-edit" onclick="toggleEdit(this)">แก้ไข</button> <button class="btn btn-delete" onclick="deleteRow(this)">ลบ</button></td></tr>
+                <tr><td>Supervisor PA 1 D</td><td>คุณบุญมี เคนท้าว (คุณเบียร์)</td><td>-</td><td><span class="phone-badge">4067</span></td><td class="admin-col"><button class="btn btn-edit" onclick="toggleEdit(this)">แก้ไข</button> <button class="btn btn-delete" onclick="deleteRow(this)">ลบ</button></td></tr>
+                <tr><td>Retail 1</td><td>คุณดิสสพล สินธุเสน (คุณอ้าย)</td><td>spvs04@9singhabroker.com</td><td><span class="phone-badge">4055</span></td><td class="admin-col"><button class="btn btn-edit" onclick="toggleEdit(this)">แก้ไข</button> <button class="btn btn-delete" onclick="deleteRow(this)">ลบ</button></td></tr>
+                <tr><td>Retail 2</td><td>คุณรจนา โพธิ์ชัยทอง (คุณแอ๊ป)</td><td>spvs05@9singhabroker.com</td><td><span class="phone-badge">5047</span></td><td class="admin-col"><button class="btn btn-edit" onclick="toggleEdit(this)">แก้ไข</button> <button class="btn btn-delete" onclick="deleteRow(this)">ลบ</button></td></tr>
+                <tr><td>Retail 3</td><td>คุณชัชวาลย์ นันตะราม (คุณบอย)</td><td>spvs13@9singhabroker.com</td><td><span class="phone-badge">3009</span></td><td class="admin-col"><button class="btn btn-edit" onclick="toggleEdit(this)">แก้ไข</button> <button class="btn btn-delete" onclick="deleteRow(this)">ลบ</button></td></tr>
+                <tr><td>Retail 4</td><td>คุณวุฒิศักดิ์ แก่นกุล (คุณปัง)</td><td>-</td><td><span class="phone-badge">4026</span></td><td class="admin-col"><button class="btn btn-edit" onclick="toggleEdit(this)">แก้ไข</button> <button class="btn btn-delete" onclick="deleteRow(this)">ลบ</button></td></tr>
+                <tr><td>Motor 1</td><td>คุณนฤภาณุรัช แก้วการเวกธัชกร (คุณใหม่)</td><td>spvs09@9singhabroker.com</td><td><span class="phone-badge">4068</span></td><td class="admin-col"><button class="btn btn-edit" onclick="toggleEdit(this)">แก้ไข</button> <button class="btn btn-delete" onclick="deleteRow(this)">ลบ</button></td></tr>
+                <tr><td>การตลาดลูกค้าองค์กร</td><td>คุณกวินลักษณ์ ทับทิม (คุณนวย)</td><td>aecorporate@9singhabroker.com</td><td><span class="phone-badge">4056</span></td><td class="admin-col"><button class="btn btn-edit" onclick="toggleEdit(this)">แก้ไข</button> <button class="btn btn-delete" onclick="deleteRow(this)">ลบ</button></td></tr>
+                <tr><td>สื่อสารองค์กร</td><td>คุณธรรมนูญ ครองยุทธ (คุณเจมส์)</td><td>info@9singhabroker.com</td><td><span class="phone-badge">2054</span></td><td class="admin-col"><button class="btn btn-edit" onclick="toggleEdit(this)">แก้ไข</button> <button class="btn btn-delete" onclick="deleteRow(this)">ลบ</button></td></tr>
+                <tr><td>ห้องประชุม 1</td><td>ห้องประชุมอาคาร2ชั้น1 (Room1)</td><td>-</td><td><span class="phone-badge">5001</span></td><td class="admin-col"><button class="btn btn-edit" onclick="toggleEdit(this)">แก้ไข</button> <button class="btn btn-delete" onclick="deleteRow(this)">ลบ</button></td></tr>
+                <tr><td>ห้องประชุม 2</td><td>ห้องเทรน อาคาร3ชั้น1ห้อง1 (Room2)</td><td>-</td><td><span class="phone-badge">5002</span></td><td class="admin-col"><button class="btn btn-edit" onclick="toggleEdit(this)">แก้ไข</button> <button class="btn btn-delete" onclick="deleteRow(this)">ลบ</button></td></tr>
+                <tr><td>ห้องประชุม 3</td><td>ห้องเทรน อาคาร3ชั้น1ห้อง2 (Room3)</td><td>-</td><td><span class="phone-badge">5003</span></td><td class="admin-col"><button class="btn btn-edit" onclick="toggleEdit(this)">แก้ไข</button> <button class="btn btn-delete" onclick="deleteRow(this)">ลบ</button></td></tr>
+                <tr><td>ห้องประชุม ชั้น6</td><td>ห้องประชุม อาคาร2ชั้น6 (Room4)</td><td>-</td><td><span class="phone-badge">5004</span></td><td class="admin-col"><button class="btn btn-edit" onclick="toggleEdit(this)">แก้ไข</button> <button class="btn btn-delete" onclick="deleteRow(this)">ลบ</button></td></tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="footer">
+        © 2026 9 Singha Broker Co., Ltd. VIP Internal Directory
+        <div class="admin-trigger" onclick="openLoginModal()">🔒</div>
+    </div>
+</div>
+
+<div id="loginModal">
+    <div class="modal-content" id="loginContent">
+        <h3>เข้าสู่ระบบ Admin</h3>
+        <input type="password" id="adminPassword" class="modal-input" placeholder="••••••••" onkeypress="handleEnter(event)">
+        <div class="modal-buttons">
+            <button class="btn btn-delete" onclick="closeLoginModal()" style="border-radius:12px; padding: 12px 25px;">ยกเลิก</button>
+            <button class="btn btn-add" onclick="checkPassword()" style="border-radius:12px; padding: 12px 25px;">ตกลง</button>
+        </div>
     </div>
 </div>
 
 <script>
-    // ฟังก์ชันค้นหาข้อมูลในตาราง
+    window.onload = function() { 
+        checkResigned(); 
+        let rows = document.querySelectorAll('tbody tr');
+        rows.forEach((row, index) => {
+            row.style.animationDelay = (index * 0.04) + 's';
+        });
+    };
+
     function searchTable() {
-        var input, filter, table, tr, td, i, txtValue;
+        var input, filter, table, tr, i;
         input = document.getElementById("searchInput");
         filter = input.value.toUpperCase();
         table = document.getElementById("contactTable");
         tr = table.getElementsByTagName("tr");
 
-        for (i = 0; i < tr.length; i++) {
-            // ค้นหาจากทุกคอลัมน์ (0=ตำแหน่ง, 1=ชื่อ, 2=อีเมล, 3=เบอร์)
-            var tdPosition = tr[i].getElementsByTagName("td")[0];
-            var tdName = tr[i].getElementsByTagName("td")[1];
-            var tdEmail = tr[i].getElementsByTagName("td")[2];
-            var tdTel = tr[i].getElementsByTagName("td")[3];
-            
-            if (tdName || tdPosition || tdTel || tdEmail) {
-                var txtPosition = tdPosition.textContent || tdPosition.innerText;
-                var txtName = tdName.textContent || tdName.innerText;
-                var txtEmail = tdEmail.textContent || tdEmail.innerText;
-                var txtTel = tdTel.textContent || tdTel.innerText;
-
-                // เช็คเงื่อนไขค้นหา
-                if (txtName.toUpperCase().indexOf(filter) > -1 || 
-                    txtPosition.toUpperCase().indexOf(filter) > -1 || 
-                    txtEmail.toUpperCase().indexOf(filter) > -1 || 
-                    txtTel.toUpperCase().indexOf(filter) > -1) {
+        for (i = 1; i < tr.length; i++) {
+            var tds = tr[i].getElementsByTagName("td");
+            if (tds.length > 0) {
+                var textContent = "";
+                for(var j=0; j<4; j++){
+                    textContent += (tds[j].textContent || tds[j].innerText) + " ";
+                }
+                if (textContent.toUpperCase().indexOf(filter) > -1) {
                     tr[i].style.display = "";
+                    tr[i].style.animationDelay = "0s";
                 } else {
                     tr[i].style.display = "none";
                 }
@@ -432,24 +379,171 @@
         }
     }
 
-    // ฟังก์ชันตรวจสอบและไฮไลท์คนที่ (ออก) อัตโนมัติเมื่อโหลดหน้าเว็บ
-    window.onload = function() {
-        var table = document.getElementById("contactTable");
-        var tr = table.getElementsByTagName("tr");
-        for (i = 0; i < tr.length; i++) {
+    function checkResigned() {
+        var tr = document.getElementById("contactTable").getElementsByTagName("tr");
+        for (let i = 1; i < tr.length; i++) {
             var tdName = tr[i].getElementsByTagName("td")[1];
-            if (tdName) {
-                var txtName = tdName.textContent || tdName.innerText;
-                if (txtName.includes("(ออก)")) {
-                    tr[i].classList.add("resigned");
-                }
+            if (tdName && (tdName.textContent || tdName.innerText).includes("(ออก)")) {
+                tr[i].classList.add("resigned");
+            } else {
+                tr[i].classList.remove("resigned");
             }
         }
-    };
+    }
+
+    // --- ระบบรหัสผ่านแบบใหม่ (ซ่อนรหัส) ---
+    function openLoginModal() {
+        if(document.body.classList.contains('is-admin')) {
+            document.body.classList.remove('is-admin');
+            return;
+        }
+        let modal = document.getElementById('loginModal');
+        let content = document.getElementById('loginContent');
+        let input = document.getElementById('adminPassword');
+        input.value = ""; // เคลียร์รหัสเก่า
+        modal.style.display = "flex";
+        setTimeout(() => { content.classList.add('show'); input.focus(); }, 10);
+    }
+
+    function closeLoginModal() {
+        let modal = document.getElementById('loginModal');
+        let content = document.getElementById('loginContent');
+        content.classList.remove('show');
+        setTimeout(() => { modal.style.display = "none"; }, 300);
+    }
+
+    function checkPassword() {
+        let pass = document.getElementById('adminPassword').value;
+        if (pass === "admin9sing") {
+            document.body.classList.add('is-admin');
+            closeLoginModal();
+        } else {
+            alert("รหัสผ่านไม่ถูกต้อง กรุณาลองใหม่");
+            document.getElementById('adminPassword').value = "";
+            document.getElementById('adminPassword').focus();
+        }
+    }
+
+    function handleEnter(e) {
+        if(e.key === 'Enter') checkPassword();
+    }
+
+    // --- ระบบแก้ไข/ดาวน์โหลด (คงเดิม) ---
+    function toggleEdit(btn) {
+        let tr = btn.closest('tr');
+        let isEditing = tr.classList.contains('editing');
+        let tds = tr.querySelectorAll('td');
+
+        if (isEditing) {
+            tds[0].contentEditable = "false";
+            tds[1].contentEditable = "false";
+            tds[2].contentEditable = "false";
+            let rawPhone = tds[3].innerText.trim();
+            tds[3].innerHTML = `<span class="phone-badge">${rawPhone}</span>`;
+            tds[3].contentEditable = "false";
+
+            tr.classList.remove('editing');
+            btn.innerText = "แก้ไข";
+            btn.className = "btn btn-edit";
+            checkResigned(); 
+        } else {
+            tds[0].contentEditable = "true";
+            tds[1].contentEditable = "true";
+            tds[2].contentEditable = "true";
+            let phoneNum = tds[3].querySelector('.phone-badge') ? tds[3].querySelector('.phone-badge').innerText : tds[3].innerText;
+            tds[3].innerHTML = phoneNum;
+            tds[3].contentEditable = "true";
+            
+            tds[0].focus();
+            tr.classList.add('editing');
+            btn.innerText = "ตกลง";
+            btn.className = "btn btn-confirm";
+        }
+    }
+
+    function deleteRow(btn) {
+        if(confirm("คุณต้องการลบรายชื่อนี้ใช่หรือไม่?")) {
+            btn.closest('tr').remove();
+        }
+    }
+
+    function addNewRow() {
+        let tbody = document.querySelector("#contactTable tbody");
+        let newRow = document.createElement("tr");
+        newRow.style.animationDelay = "0s";
+        newRow.innerHTML = `
+            <td>ระบุแผนก</td>
+            <td>ระบุชื่อ-นามสกุล</td>
+            <td>email@9singhabroker.com</td>
+            <td><span class="phone-badge">0000</span></td>
+            <td class="admin-col">
+                <button class="btn btn-edit" onclick="toggleEdit(this)">แก้ไข</button>
+                <button class="btn btn-delete" onclick="deleteRow(this)">ลบ</button>
+            </td>
+        `;
+        tbody.insertBefore(newRow, tbody.firstChild);
+        toggleEdit(newRow.querySelector('.btn-edit'));
+    }
+
+    function downloadHTML() {
+        if(document.querySelector('.editing')) {
+            alert("⚠️ กรุณากดปุ่ม 'ตกลง' ในแถวที่กำลังแก้ไขให้เรียบร้อยก่อนดาวน์โหลดครับ");
+            return;
+        }
+
+        let clonedDoc = document.documentElement.cloneNode(true);
+        clonedDoc.querySelector('body').classList.remove('is-admin');
+        
+        let loginModal = clonedDoc.querySelector('#loginModal');
+        if(loginModal) loginModal.style.display = "none";
+
+        let searchInput = clonedDoc.querySelector('#searchInput');
+        if(searchInput) searchInput.setAttribute('value', ''); 
+        
+        let rows = clonedDoc.querySelectorAll('#contactTable tr');
+        rows.forEach(row => { row.style.display = ""; });
+
+        let htmlContent = "<!DOCTYPE html>\n" + clonedDoc.outerHTML;
+        let blob = new Blob([htmlContent], {type: "text/html;charset=utf-8"});
+        let url = URL.createObjectURL(blob);
+        
+        let a = document.createElement("a");
+        a.href = url;
+        a.download = "index.html";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+
+    function downloadPNG() {
+        let adminPanel = document.getElementById("adminPanel");
+        adminPanel.style.display = "none";
+        document.body.style.cursor = 'wait';
+
+        let rows = document.querySelectorAll('tbody tr');
+        rows.forEach(row => { row.style.animation = "none"; row.style.opacity = "1"; row.style.transform = "none"; });
+
+        let captureArea = document.querySelector(".container");
+
+        html2canvas(captureArea, {
+            scale: 2, 
+            backgroundColor: "#f4f6f9", 
+            windowWidth: captureArea.scrollWidth,
+            windowHeight: captureArea.scrollHeight
+        }).then(canvas => {
+            let a = document.createElement("a");
+            a.href = canvas.toDataURL("image/png");
+            let dateStr = new Date().toISOString().slice(0, 10);
+            a.download = "9Singha-VIP-Directory-" + dateStr + ".png"; 
+            a.click();
+            
+            adminPanel.style.display = "flex";
+            document.body.style.cursor = 'default';
+            rows.forEach(row => { row.style.animation = ""; });
+        });
+    }
 </script>
 
 </body>
 </html>
-
-
-
